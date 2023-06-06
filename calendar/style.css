@@ -1,0 +1,137 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(45deg, #fc345c, #fc3);
+  user-select: none;
+  font-family: sans-serif;
+}
+.body {
+  min-width: 380px;
+  max-width: 400px;
+  height: 450px;
+  box-sizing: border-box;
+  border-radius: 1rem;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding: 1em;
+}
+.year-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.year {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  position: relative;
+  text-transform: capitalize;
+}
+.year::after {
+  content: "";
+  width: 110%;
+  height: 2px;
+  background-color: black;
+  position: absolute;
+  left: -5px;
+  bottom: -2px;
+  border-radius: 0.1rem;
+}
+
+.date-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+}
+
+.week {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap:.65rem;
+  height: 100%;
+}
+.week div {
+  background-color: hsl(0, 0%, 85%);
+  text-transform: capitalize;
+  width: 35px;
+  height: 25px;
+  padding: 0.2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.3rem;
+}
+
+.week div:first-child {
+  background-color: rgba(255, 0, 0, 0.767);
+}
+.week div:last-child {
+  background-color: rgba(0, 140, 255, 0.377);
+}
+.date {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-items: center;
+  align-items: center;
+  width: 100%;
+  gap:.7rem;
+  height: calc(40px * 7);
+}
+.date div {
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  border-radius: 0.2rem;
+  box-shadow: 0px 2px 2px gray;
+}
+.date div:nth-child(7n){
+  background-color: rgba(0, 140, 255, 0.377);
+
+}
+.holiday{
+
+  background-color: rgba(255, 0, 0, 0.767);
+}
+
+.prev {
+  background: hsl(0, 0%, 90%);
+  opacity: 0.3;
+  cursor: pointer;
+}
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+.btn div {
+  cursor: pointer;
+  background-color: rgb(108, 187, 240);
+  padding: 2px 8px;
+  border-radius: 0.3rem;
+  box-shadow: 2px 1px 3px gray;
+}
+.btn div:active {
+  background-color: rgb(47, 172, 255);
+}
+
+.current {
+  background-color: rgb(51, 255, 177);
+}

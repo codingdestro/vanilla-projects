@@ -44,14 +44,14 @@ const toggleScore = () => {
 
 //reset the game
 
-const resetGame = ()=>{
+const resetGame = () => {
   emptyBoard();
   score[0] = 0;
   score[1] = 0;
   eventes();
 };
 
-document.querySelector(".reset").addEventListener("click", resetGame)
+document.querySelector(".reset").addEventListener("click", resetGame);
 
 const isWon = () => {
   won = false;
@@ -72,18 +72,15 @@ const isWon = () => {
     } else {
       score[0] += 1;
     }
-    if( (i = score.findIndex(val=> val == 3)) >-1){
-      alert(`player ${i+1} won the match`)
-      resetGame()
-
-    }else{
-
-    clickable = false;
-    eventes();
-    animation();
-    clearAnimation();
+    if ((i = score.findIndex((val) => val == 3)) > -1) {
+      alert(`player ${i + 1} won the match`);
+      resetGame();
+    } else {
+      clickable = false;
+      eventes();
+      animation();
+      clearAnimation();
     }
-
   }
 };
 
@@ -109,7 +106,7 @@ const insertRoll = (idx) => {
   }
 };
 
-
+//hello my name ismohd anas how you doing today
 //animation if player wins
 const animation = () => {
   box[animate[0]].classList.toggle("active");

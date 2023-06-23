@@ -21,9 +21,10 @@ body {
   box-shadow: 1px 2px 5px rgb(196, 196, 196);
   padding: 1rem;
   box-sizing: border-box;
+  position: relative;
 }
 .heading {
-  position: relative;
+  position: absolute;
   top: -5rem;
   text-align: center;
   font-size: 28px;
@@ -33,7 +34,7 @@ body {
   letter-spacing: 2px;
   border-radius: 0.5rem;
   box-shadow: 2px 2px 5px rgb(221, 221, 221);
-  padding: 0.5rem 0;
+  padding: 0.5rem 1rem;
 }
 .dob-label {
   border-bottom: 1px solid rgb(200, 200, 200);

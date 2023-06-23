@@ -20,7 +20,7 @@ const calculateAge = () => {
 
   let dy, mth, yr;
 
-  if (dayInputBox.value > crrDate[0]) {
+  if (dayInputBox.value > parseInt(crrDate[0])) {
     crrDate[0] =
       parseInt(crrDate[0]) + new Date(crrDate[2], crrDate[1] - 1, 0).getDate();
     crrDate[1]--;

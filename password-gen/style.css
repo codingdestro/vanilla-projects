@@ -73,17 +73,30 @@ body {
 }
 .range {
   display: flex;
+  flex-direction: column;
   width: 100%;
   align-items: center;
   font-family: Nunito Sans;
   font-weight: 700;
   justify-content: space-between;
+  gap: 10px;
   text-transform: capitalize;
 }
 .range input {
-  width: 85%;
+  width: 100%;
 }
-.range label {
+.range-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.range-label > span {
+  font-family: Roboto Mono;
+  font-size: 14px;
+  font-weight: 800;
+}
+.range-label label {
   background: rgb(38, 189, 248);
   color: white;
   width: 30px;
@@ -118,6 +131,8 @@ body {
 }
 .checkbox input {
   display: none;
+  accent-color: rgb(38, 189, 248);
+  scale: 1.1;
 }
 .checkbox input:checked ~ label::before {
   background-color: rgb(38, 189, 248);

@@ -27,21 +27,7 @@ html {
   transition: translate 0.6s;
   box-sizing: border-box;
   box-shadow: 2px 2px 5px #000, inset 2px 2px 5px #222a;
-  z-index: 999;
-}
-
-.dummy {
-  position: absolute;
-  width: 50px;
-  aspect-ratio: 1/1;
-  top: 1px;
-  left: 1px;
-  transition: translate 0.6s;
-  box-sizing: border-box;
-  background: rgba(255, 255, 255, 0.349);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  z-index: 99;
 }
 
 @keyframes bounce {
@@ -84,6 +70,7 @@ body {
   left: 0;
   margin: 0;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -100,18 +87,6 @@ body {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-}
-
-.dice-box::after {
-  content: "click to roll the dice";
-  position: absolute;
-  border-bottom: 1px solid #000;
-  padding: 0.5rem;
-  color: red;
-  font-weight: 600;
-  top: 120%;
-  width: 150px;
-  text-align: center;
 }
 
 .dice {
@@ -172,4 +147,35 @@ body {
 .dots {
   font-size: 14px;
   font-weight: 900;
+}
+
+.player-selection {
+  padding: 1rem;
+  margin-top: 10%;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+  z-index: 999;
+  transition: 0.1s;
+}
+.player-selection.hide {
+  display: none;
+}
+
+.player-selection button {
+  border-radius: 0.5rem;
+  border: none;
+  outline: none;
+  padding: 0.5rem;
+  margin: 0 0.5rem;
+  text-transform: capitalize;
+  box-shadow: 0 5px 5px #aaa;
+  transition: 0.2s;
+}
+.player-selection button:active {
+  background-color: #0aa;
 }

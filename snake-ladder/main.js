@@ -1,6 +1,6 @@
 let diceBox = document.querySelector(".dice-box");
 let dice = document.querySelector(".sides");
-let player = 3;
+let player = 2;
 let coins = [];
 let diceFaces = [
   [-2, 362],
@@ -13,6 +13,7 @@ let diceFaces = [
 
 let turn = 0;
 let animate = false;
+let newGame = true;
 
 let data = {
   "3,9": [4, 7],
@@ -77,16 +78,56 @@ class Coin {
     }px`;
   }
 
+  roll(dice) {
+    if (this.y === 0 && 9 - this.xx >= 3)
+      if (dice > this.xx) {
+        this.coin.children[0].classList.remove("active");
+        turn = turn === player - 1 ? 0 : turn + 1;
+        coins[turn].coin.children[0].classList.add("active");
+        return;
+      }
+
+    let x = 0;
+    let timer = setInterval(() => {
+      if (x >= dice) {
+        this.bitean();
+        clearInterval(timer);
+        return;
+      } else {
+        x++;
+        this.move();
+      }
+    }, 450);
+  }
+
+  move() {
+    if (this.yy <= 0 && this.xx <= 0) {
+      return;
+    }
+    this.xx = this.x;
+    this.yy = this.y;
+    this.coin.style.translate = `${this.x * coinDelta}px ${
+      this.y * coinDelta
+    }px`;
+
+    this.x = this.y % 2 !== 0 ? this.x + 1 : this.x - 1;
+    if (this.x < 0 || this.x > 9) {
+      this.y--;
+      this.x = this.y % 2 !== 0 ? this.x + 1 : this.x - 1;
+    }
+  }
+
   bitean() {
+    animate = true;
     let x = this.xx + "," + this.yy;
 
     if (this.yy <= 0 && this.xx <= 0) {
       alert(this.name + " you won!");
+      animate = false;
       game();
       return;
     }
     if (data[x] !== undefined) {
-      animate = true;
       this.x = data[x][0];
       this.y = data[x][1];
 
@@ -102,58 +143,18 @@ class Coin {
       }, 500);
       return;
     }
+    animate = false;
 
     this.coin.children[0].classList.remove("active");
     turn = turn === player - 1 ? 0 : turn + 1;
     coins[turn].coin.children[0].classList.add("active");
-  }
-
-  roll(dice) {
-    if (this.y === 0 && 9 - this.xx >= 3)
-      if (dice > this.xx) {
-        this.coin.children[0].classList.remove("active");
-        turn = turn === player - 1 ? 0 : turn + 1;
-        coins[turn].coin.children[0].classList.add("active");
-        return;
-      }
-
-    animate = true;
-    let x = 0;
-    let timer = setInterval(() => {
-      if (x >= dice) {
-        clearInterval(timer);
-        this.bitean();
-        animate = false;
-        return;
-      } else {
-        x++;
-        this.move();
-      }
-    }, 400);
-  }
-
-  move() {
-    if (this.yy <= 0 && this.xx <= 0) {
-      // player--;
-      return;
-    }
-    this.xx = this.x;
-    this.yy = this.y;
-    this.coin.style.translate = `${this.x * coinDelta}px ${
-      this.y * coinDelta
-    }px`;
-
-    this.x = this.y % 2 !== 0 ? this.x + 1 : this.x - 1;
-    if (this.x < 0 || this.x > 9) {
-      this.y--;
-      this.x = this.y % 2 !== 0 ? this.x + 1 : this.x - 1;
-    }
   }
 }
 
 const random = () => {
   return Math.floor(Math.random() * 6 + 1);
 };
+
 const game = async () => {
   let canva = document.querySelector("#canva");
   canva.innerHTML = "";
@@ -166,12 +167,11 @@ const game = async () => {
   }
   coins[0].coin.children[0].classList.add("active");
 };
-game();
 
 //dice animation
 const rollTheDice = (x) => {
+  animate = true;
   dice.classList.add("animate");
-
   setTimeout(() => {
     dice.classList.remove("animate");
     dice.style.transform = `rotateX(${diceFaces[x - 1][0]}deg) rotateY(${
@@ -185,6 +185,10 @@ diceBox.addEventListener("mousedown", () => {
   if (animate) return;
   rollTheDice(random());
 });
+document.querySelector("#canva").addEventListener("click", () => {
+  if (animate) return;
+  rollTheDice(random());
+});
 
 //set coins position on window resize
 window.addEventListener("resize", () => {
@@ -194,3 +198,17 @@ window.addEventListener("resize", () => {
 
 coinDelta = window.innerWidth < 450 ? 37.2 : 57.2;
 coins.forEach((coin) => coin.setCoinPos());
+
+let selectPlayers = document.querySelectorAll(".player-selection button");
+let selectPlayersBox = document.querySelector(".player-selection");
+
+selectPlayers[0].addEventListener("click", () => {
+  player = 2;
+  selectPlayersBox.style.display = "none";
+  game();
+});
+selectPlayers[1].addEventListener("click", () => {
+  selectPlayersBox.style.display = "none";
+  player = 3;
+  game();
+});

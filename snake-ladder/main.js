@@ -78,12 +78,16 @@ class Coin {
     }px`;
   }
 
+  setActive() {
+    this.coin.children[0].classList.remove("active");
+    turn = turn === player - 1 ? 0 : turn + 1;
+    coins[turn].coin.children[0].classList.add("active");
+  }
+
   roll(dice) {
+    this.coin.children[0].classList.remove("active");
     if (this.y === 0 && 9 - this.xx >= 3)
       if (dice > this.xx) {
-        this.coin.children[0].classList.remove("active");
-        turn = turn === player - 1 ? 0 : turn + 1;
-        coins[turn].coin.children[0].classList.add("active");
         return;
       }
 
@@ -137,17 +141,12 @@ class Coin {
 
       setTimeout(() => {
         animate = false;
-        this.coin.children[0].classList.remove("active");
-        turn = turn === player - 1 ? 0 : turn + 1;
-        coins[turn].coin.children[0].classList.add("active");
+        this.setActive();
       }, 500);
       return;
     }
     animate = false;
-
-    this.coin.children[0].classList.remove("active");
-    turn = turn === player - 1 ? 0 : turn + 1;
-    coins[turn].coin.children[0].classList.add("active");
+    this.setActive();
   }
 }
 

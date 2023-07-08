@@ -58,7 +58,7 @@ html {
 
 .coin .active {
   position: absolute;
-  animation: bounce 1s ease-in-out infinite;
+  /* animation: bounce 1s ease-in-out infinite; */
   top: 0;
   left: 50%;
   border: 10px solid #000;
@@ -101,6 +101,19 @@ body {
   align-items: center;
   cursor: pointer;
 }
+
+.dice-box::after {
+  content: "click to roll the dice";
+  position: absolute;
+  border-bottom: 1px solid #000;
+  padding: 0.5rem;
+  color: red;
+  font-weight: 600;
+  top: 120%;
+  width: 150px;
+  text-align: center;
+}
+
 .dice {
   width: 20px;
   height: 20px;

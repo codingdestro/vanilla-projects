@@ -11,14 +11,17 @@
   height: 220px;
   border: 40px solid white;
   border-radius: 50%;
+  background-color: #ddd;
   box-shadow: 2px 2px 5px gray, inset 1px 1px 5px gray, -1px -1px 5px gray;
   display: flex;
   justify-content: center;
   align-items: center;
+  scale: 1.25;
 }
 .point {
   border: 6px solid black;
   border-radius: 50%;
+  z-index: 99;
 }
 .pointer {
   position: absolute;
@@ -30,11 +33,14 @@
 .sec {
   width: 105px;
   height: 2px;
+  background-color: red;
 }
 .min {
   width: 100px;
   height: 4px;
+  background-color: rgb(0, 129, 172);
 }
+
 .hour {
   width: 80px;
   height: 5px;
@@ -49,4 +55,13 @@
   align-items: center;
   font-size: 20px;
   font-family: sans-serif;
+}
+
+.sub.dot {
+  color: red;
+  background-color: gray;
+  width: 8%;
+  height: 5px;
+  border-radius: 0.5rem;
+  translate: -20% 0;
 }

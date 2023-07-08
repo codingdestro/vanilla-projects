@@ -80,7 +80,6 @@ const handler = (id, text) => {
     default:
       toScreen(text);
   }
-  console.log(a + " " + b);
 };
 
 buttons.forEach((btn, idx) => {

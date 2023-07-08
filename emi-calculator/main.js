@@ -7,6 +7,7 @@ const calculateEmi = () => {
   let p = parseInt(amount.value);
   let r = rate.value;
   let n = months.value;
+  if (!p || !r || !n) return;
   r = r / 12 / 100;
   emi = (p * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
 
@@ -26,5 +27,6 @@ const showData = (emi, total, payable) => {
 
 document.querySelector(".calc-btn").addEventListener("click", () => {
   emi = calculateEmi();
+  if (!emi) return;
   showData(...emi);
 });

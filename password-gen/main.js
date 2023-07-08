@@ -3,6 +3,7 @@ let rangeLabel = document.querySelector(".range label");
 let options = document.querySelectorAll(".options .checkbox input");
 let copyButton = document.querySelector(".box");
 let generateButton = document.querySelector(".passButton");
+let passwordStrength = document.querySelector(".password-strength span");
 let weekness = 1;
 let length = parseInt(20 * (range.value / 100));
 let lower = "abcdefghijklmnopqrstuvwxyz";
@@ -24,18 +25,25 @@ const random = (x) => {
 
 const copyButtonTimeOut = () => {
   clearTimeout(interval);
-  copyButton.children[1].innerText = "copied";
+  // copyButton.children[1].innerText = "copied";
+  copyButton.children[1].style.backgroundImage = "url('./check-mark.png')";
   interval = setTimeout(() => {
-    copyButton.children[1].innerText = "copy";
+    copyButton.children[1].style.backgroundImage = "url('./copy.png')";
   }, 1000);
 };
 
 const generate = () => {
   let password = "";
+  if (!string.length) alert("select any one option");
   for (let i = 0; i < length; i++) {
     password += string.charAt(random(string.length - 1));
   }
   Password.value = password;
+  if (password.length < 6) {
+    passwordStrength.innerHTML = "week";
+  } else {
+    passwordStrength.innerHTML = "strong";
+  }
 };
 
 const copyPassword = async () => {
@@ -47,7 +55,6 @@ const copyPassword = async () => {
   }
 };
 
-console.log(options);
 options.forEach((e, idx) => {
   e.addEventListener("click", () => {
     if (string.split(charators[idx]).length > 1) {

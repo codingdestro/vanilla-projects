@@ -16,13 +16,19 @@ const calculateEmi = () => {
   return [parseFloat(emi).toFixed(2), totalAmount, payable];
 };
 
+const getAmountToString = (amount) => {
+  return parseFloat(amount).toLocaleString();
+};
+
 const showData = (emi, total, payable) => {
-  document.querySelector(".emi.amount").innerText = emi;
+  document.querySelector(".emi.amount").innerText = getAmountToString(emi);
   document.querySelectorAll(".info-card .amount")[0].innerText = parseInt(
     amount.value
-  );
-  document.querySelectorAll(".info-card .amount")[1].innerText = payable;
-  document.querySelectorAll(".info-card .amount")[2].innerText = total;
+  ).toLocaleString();
+  document.querySelectorAll(".info-card .amount")[1].innerText =
+    getAmountToString(payable);
+  document.querySelectorAll(".info-card .amount")[2].innerText =
+    getAmountToString(total);
 };
 
 document.querySelector(".calc-btn").addEventListener("click", () => {

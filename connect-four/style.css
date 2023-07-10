@@ -27,27 +27,37 @@ html {
 .board {
   width: 378px;
   height: 323px;
-  border-radius: 1rem;
+  /* border-radius: 1rem; */
   border: 1px solid #000;
   box-shadow: 0 5px 2px 1px #000;
   background-color: white;
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(6, 1fr);
   align-items: center;
   justify-items: center;
 }
-.board .coin {
-  width: 50px;
+.coin {
+  width: 40px;
   border-radius: 50%;
-  box-shadow: inset 1px 3px 2px #0007;
   aspect-ratio: 1/1;
-  background: rgb(247, 22, 22);
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 7px;
+  left: 7px;
+  box-sizing: border-box;
+}
+.coin.red {
+  box-shadow: inset 1px 2px 5px #0007, inset 1px 2px 2px #0005;
+  background: rgb(247, 22, 22);
+  border: 2px solid #d00;
+}
+
+.coin.blue {
+  box-shadow: inset 1px 2px 5px #0007, inset 1px 2px 2px #0005;
+  background: rgb(22, 82, 247);
+  border: 2px solid #00d;
 }
 .holes {
   width: 100%;
@@ -60,11 +70,43 @@ html {
     transparent,
     transparent,
     transparent,
-    rgba(0, 128, 128, 0.644),
+    /* rgba(00, 0, 0), */ rgba(0, 128, 128),
     teal
   );
   box-sizing: border-box;
   position: relative;
+  z-index: 999;
+}
+
+.button {
+  position: absolute;
+  width: 54px;
+  height: 98%;
+  top: 2px;
+  left: 1px;
+  cursor: pointer;
+  z-index: 99999;
+}
+
+@keyframes bounce {
+  0% {
+    translate: -50% -80%;
+  }
+  50% {
+    translate: -50% -50%;
+  }
+  100% {
+    translate: -50% -80%;
+  }
+}
+
+.button:hover::before {
+  content: "";
+  position: absolute;
+  border: 10px solid transparent;
+  border-top-color: violet;
+  left: 50%;
+  animation: bounce 2s linear infinite;
 }
 
 .player-box {
@@ -73,7 +115,7 @@ html {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  gap: 1rem;
+  gap: 2rem;
 }
 .player-box .player {
   background-color: #fff;
@@ -83,10 +125,23 @@ html {
   text-transform: uppercase;
   font-weight: 700;
   border: 1px solid #000;
-  box-shadow: 0 3px 0px 1px #000;
+  box-shadow: 0 3px 5px 0px #000;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: 0.4s scale;
+  position: relative;
+}
+
+.player-box .player .coin.blue {
+  top: 40px;
+  left: -10px;
+  scale: 0.9;
+}
+.player-box .player .coin.red {
+  top: 40px;
+  left: 140px;
+  scale: 0.9;
 }
 
 .player-box .player span:last-child {
@@ -94,6 +149,10 @@ html {
 }
 .player-box .player:last-child {
   flex-direction: row-reverse;
+}
+
+.player.active {
+  scale: 1.1;
 }
 
 .countdown {

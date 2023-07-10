@@ -15,24 +15,53 @@ let turn = 0;
 let animate = false;
 let newGame = true;
 
-let data = {
-  "3,9": [4, 7],
-  "0,7": [1, 6],
-  "8,7": [6, 2],
-  "9,7": [6, 9],
-  "2,5": [4, 2],
-  "6,5": [5, 8],
-  "4,4": [1, 8],
-  "2,3": [0, 2],
-  "9,2": [8, 1],
-  "7,2": [9, 4],
-  "1,1": [1, 5],
-  "8,0": [5, 2],
-  "2,0": [5, 4],
-};
+let data = [
+  {
+    "3,9": [4, 7],
+    "0,7": [1, 6],
+    "8,7": [6, 2],
+    "9,7": [6, 9],
+    "2,5": [4, 2],
+    "6,5": [5, 8],
+    "4,4": [1, 8],
+    "2,3": [0, 2],
+    "9,2": [8, 1],
+    "7,2": [9, 4],
+    "1,1": [1, 5],
+    "8,0": [5, 2],
+    "2,0": [5, 4],
+  },
+
+  {
+    "0,9": [2, 6],
+    "3,9": [6, 8],
+    "8,9": [9, 6],
+    "3,8": [6, 9],
+    "0,7": [1, 5],
+    "7,7": [3, 1],
+    "9,4": [6, 3],
+    "6,4": [6, 6],
+    "1,3": [1, 8],
+    "3,3": [0, 4],
+    "9,2": [9, 0],
+    "0,2": [0, 0],
+    "6,1": [3, 7],
+    "7,0": [7, 2],
+    "5,0": [5, 2],
+    "2,0": [2, 2],
+  },
+];
 let goBack = [];
 
 let coinDelta = 57.2;
+
+const randomTheme = () => {
+  let x = Math.floor(Math.random() * 2);
+  let img = x ? "board2.png" : "board1.png";
+  canva.style.backgroundImage = `url(${img})`;
+  data = data[x];
+};
+randomTheme();
 
 coinStyles = [
   [
@@ -203,13 +232,10 @@ coins.forEach((coin) => coin.setCoinPos());
 let selectPlayers = document.querySelectorAll(".player-selection button");
 let selectPlayersBox = document.querySelector(".player-selection");
 
-selectPlayers[0].addEventListener("click", () => {
-  player = 2;
-  selectPlayersBox.style.display = "none";
-  game();
-});
-selectPlayers[1].addEventListener("click", () => {
-  selectPlayersBox.style.display = "none";
-  player = 3;
-  game();
-});
+for (let i = 0; i < 2; i++) {
+  selectPlayers[i].addEventListener("click", () => {
+    player = i + 2;
+    selectPlayersBox.style.display = "none";
+    game();
+  });
+}

@@ -88,6 +88,8 @@ class Coin {
     this.coin.children[0].classList.remove("active");
     if (this.y === 0 && 9 - this.xx >= 3)
       if (dice > this.xx) {
+        animate = false;
+        this.setActive();
         return;
       }
 

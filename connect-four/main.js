@@ -37,6 +37,9 @@ const togglePlayer = () => {
     .querySelectorAll(".player-box .player")[1]
     .classList.toggle("active");
   turn = !turn;
+  document.querySelector(".countdown .heading").innerText = turn
+    ? "player 1's turn"
+    : "player 2'nd turn";
 };
 
 const createBoard = () => {
@@ -195,7 +198,6 @@ const addCoin = (x) => {
     canClick = true;
   }
   yPos[x] -= 1;
-  // turn = !turn;
   togglePlayer();
   sec = 15;
 };
@@ -211,12 +213,12 @@ const reset = () => {
     [0, 0, 0, 0, 0, 0, 0],
   ];
   yPos = [5, 5, 5, 5, 5, 5, 5];
-  // togglePlayer();
   for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener("click", () => {
       if (canClick) addCoin(i);
     });
   }
+  sec = 15;
 };
 reset();
 
@@ -225,7 +227,6 @@ let interval = setInterval(() => {
   counter.innerHTML = `${sec}s`;
   if (sec === 0) {
     sec = 15;
-    // turn = !turn;
     togglePlayer();
   }
   sec--;

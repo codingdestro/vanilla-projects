@@ -54,28 +54,103 @@ const createBoard = () => {
   buttons = document.querySelectorAll(".button");
 };
 
-const matching = (crr, point, x, i) => {
-  if (i == 0) return true;
-  let pos = [crr[0] + ways[x][0], crr[1] + ways[x][1]];
-  if (pos[0] >= 0 && pos[0] <= 6 && pos[1] >= 0 && pos[1] <= 5) {
-    if (board[pos[1]][pos[0]] === point) {
-      return matching(pos, point, x, i - 1);
-    } else {
-      return false;
+const checkHori = (f) => {
+  for (let x = 0; x < board.length; x++) {
+    for (i = 0; i < 4; i++) {
+      if (
+        board[x][i] === f &&
+        board[x][i + 1] === f &&
+        board[x][i + 2] === f &&
+        board[x][i + 3] === f
+      ) {
+        return [
+          [x, i],
+          [x, i + 1],
+          [x, i + 2],
+          [x, i + 3],
+        ];
+      }
     }
-  } else {
-    return false;
+  }
+  return false;
+};
+
+const checkVer = (f) => {
+  for (let x = 0; x < board.length; x++) {
+    for (i = 0; i < 3; i++) {
+      if (
+        board[i][x] === f &&
+        board[i + 1][x] === f &&
+        board[i + 2][x] === f &&
+        board[i + 3][x] === f
+      ) {
+        return [
+          [i, x],
+          [i + 1, x],
+          [i + 2, x],
+          [i + 3, x],
+        ];
+      }
+    }
+  }
+  return false;
+};
+
+const diognal = (y, x, d, f) => {
+  while (y + 3 < 6) {
+    if (
+      board[y][x] === f &&
+      board[y + 1][x + d * 1] === f &&
+      board[y + 2][x + d * 2] === f &&
+      board[y + 3][x + d * 3] === f
+    ) {
+      return [
+        [y, x],
+        [y + 1, x + d * 1],
+        [y + 2, x + d * 2],
+        [y + 3, x + d * 3],
+      ];
+    }
+    y += 1;
+    x += d;
   }
 };
 
-const checkSibling = (crr = [], point) => {
-  for (let i = 0; i < ways.length; i++) {
-    let pos = [crr[0] + ways[i][0], crr[1] + ways[i][1]];
-    if (pos[0] >= 0 && pos[0] < 7 && pos[1] >= 0 && pos[1] < 6) {
-      if (board[pos[1]][[pos[0]]] !== point) continue;
-      if (matching(pos, point, i, 2)) return true;
-    }
+const checkDiognal = (f) => {
+  for (let i = 0; i < 3; i++) {
+    let x = diognal(i, 0, 1, f);
+    if (x) return x;
+    x = diognal(i, 6, -1, f);
+    if (x) return x;
   }
+
+  for (let i = 1; i < 4; i++) {
+    let x = diognal(0, i, 1, f);
+    if (x) return x;
+    x = diognal(0, 6 - i, -1, f);
+    if (x) return x;
+  }
+
+  return false;
+};
+
+const createWonCoin = (arr = []) => {
+  for (let i = 0; i < arr.length; i++) {
+    let [x, y] = arr[i];
+    let ele = document.createElement("div");
+    ele.classList.add("won_coin");
+    ele.style.translate = `${y * 54}px ${x * 54}px`;
+    box.appendChild(ele);
+  }
+};
+
+const whoWon = (turn) => {
+  let x = checkHori(turn);
+  if (x) return x;
+  x = checkVer(turn);
+  if (x) return x;
+  x = checkDiognal(turn);
+  if (x) return x;
 };
 
 const addCoin = (x) => {
@@ -90,22 +165,39 @@ const addCoin = (x) => {
   filled += 1;
   board[yPos[x]][x] = tr;
   if (filled > 6) {
-    if (checkSibling([x, yPos[x]], tr)) {
+    if (filled === 42) {
+      alert("match tie");
+      canClick = false;
+      setTimeout(() => {
+        reset();
+        canClick = true;
+      }, 2000);
+      return;
+    }
+
+    let arr = whoWon(tr);
+    if (arr) {
+      createWonCoin(arr);
       if (tr === "blue") {
         playerBox[0].innerHTML = parseInt(playerBox[0].innerText) + 1;
       } else {
         playerBox[1].innerHTML = parseInt(playerBox[1].innerText) + 1;
       }
+      canClick = false;
       setTimeout(() => {
         reset();
-      }, 1000);
+        canClick = true;
+      }, 2000);
+    } else {
+      canClick = true;
     }
+  } else {
+    canClick = true;
   }
   yPos[x] -= 1;
   // turn = !turn;
   togglePlayer();
   sec = 15;
-  canClick = true;
 };
 const reset = () => {
   box.innerHTML = "";
@@ -119,8 +211,7 @@ const reset = () => {
     [0, 0, 0, 0, 0, 0, 0],
   ];
   yPos = [5, 5, 5, 5, 5, 5, 5];
-  // turn = !turn;
-  togglePlayer();
+  // togglePlayer();
   for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener("click", () => {
       if (canClick) addCoin(i);

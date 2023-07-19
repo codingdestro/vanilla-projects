@@ -77,6 +77,15 @@ coinStyles = [
   ],
 ];
 
+const gameOver = (x, y, name) => {
+  if (y <= 0 && x <= 0) {
+    alert(name + " you won!");
+    animate = false;
+    game();
+    return;
+  }
+};
+
 class Coin {
   constructor(i) {
     this.coin = null;
@@ -162,6 +171,7 @@ class Coin {
       game();
       return;
     }
+
     if (data[x] !== undefined) {
       this.x = data[x][0];
       this.y = data[x][1];
@@ -171,6 +181,8 @@ class Coin {
       }, 100);
 
       setTimeout(() => {
+        gameOver(this.xx, this.yy, this.name);
+
         animate = false;
         this.setActive();
       }, 500);
@@ -218,6 +230,7 @@ diceBox.addEventListener("mousedown", () => {
 document.querySelector("#canva").addEventListener("click", () => {
   if (animate) return;
   rollTheDice(random());
+  // rollTheDice(2);
 });
 
 //set coins position on window resize

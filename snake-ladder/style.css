@@ -44,7 +44,7 @@ html {
 
 .coin .active {
   position: absolute;
-  animation: bounce 1s ease-in-out infinite;
+  /* animation: bounce 1s ease-in-out infinite; */
   top: 0;
   left: 50%;
   border: 10px solid #000;

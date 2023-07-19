@@ -37,7 +37,7 @@ const togglePlayer = () => {
     .querySelectorAll(".player-box .player")[1]
     .classList.toggle("active");
   turn = !turn;
-  document.querySelector(".countdown .heading").innerText = turn
+  document.querySelector(".countdown .heading").innerText = !turn
     ? "player 1's turn"
     : "player 2'nd turn";
 };
@@ -213,11 +213,13 @@ const reset = () => {
     [0, 0, 0, 0, 0, 0, 0],
   ];
   yPos = [5, 5, 5, 5, 5, 5, 5];
+  togglePlayer();
   for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener("click", () => {
       if (canClick) addCoin(i);
     });
   }
+  filled = 0;
   sec = 15;
 };
 reset();

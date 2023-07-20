@@ -48,7 +48,7 @@ let data = [
     "6,1": [3, 7],
     "7,0": [7, 2],
     "5,0": [5, 2],
-    "2,0": [2, 2],
+    "2,0": [1, 2],
   },
 ];
 let goBack = [];
@@ -230,7 +230,7 @@ diceBox.addEventListener("mousedown", () => {
 document.querySelector("#canva").addEventListener("click", () => {
   if (animate) return;
   rollTheDice(random());
-  // rollTheDice(2);
+  // rollTheDice(
 });
 
 //set coins position on window resize

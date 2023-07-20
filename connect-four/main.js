@@ -163,10 +163,18 @@ const addCoin = (x) => {
   let coin = document.createElement("div");
   coin.classList.add("coin");
   coin.classList.add(tr);
-  coin.style.translate = `${x * 54}px ${yPos[x] * 54}px`;
   box.appendChild(coin);
+  coin.style.translate = `${x * 54}px 0px`;
+  const sound = new Audio("./sounds/coin-drop.wav");
+  sound.play();
+  setTimeout(() => {
+    coin.style.translate = `${x * 54}px ${yPos[x] * 54}px`;
+    yPos[x] -= 1;
+  }, 10);
   filled += 1;
+
   board[yPos[x]][x] = tr;
+
   if (filled > 6) {
     if (filled === 42) {
       alert("match tie");
@@ -197,7 +205,6 @@ const addCoin = (x) => {
   } else {
     canClick = true;
   }
-  yPos[x] -= 1;
   togglePlayer();
   sec = 15;
 };

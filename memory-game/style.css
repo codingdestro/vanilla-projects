@@ -29,6 +29,12 @@ body {
   border-radius: 0.2rem;
   box-shadow: 1px 1px 2px rgb(120, 120, 120);
 }
+.score div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
 .btn {
   bottom: 25%;
   border: none;
@@ -71,8 +77,9 @@ body {
   position: relative;
   width: 70px;
   transform-style: preserve-3d;
-  border: 2px solid rgb(189, 189, 189);
+  /* border: 2px solid rgb(189, 189, 189); */
   /* box-shadow: -2px 2px 5px rgb(197, 197, 197); */
+  box-shadow: -2px 2px 2px rgba(0, 0, 0, 0.158), 1px -1px 4px rgba(0, 0, 0, 0.158) ;
   aspect-ratio: 1/1;
   border-radius: 0.2rem;
   display: flex;

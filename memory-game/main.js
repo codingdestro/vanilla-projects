@@ -8,13 +8,17 @@ const boxTypes = [
   "penguine",
   "treasure",
 ];
+
 let boxes = [];
 let disable = true;
+let matchedCards = [];
 let prev = null;
 let score = 0;
+let level = 1;
 let scoreBox = document.querySelector(".score span");
 let health = 10;
 let healthBox = document.querySelectorAll(".score span")[1];
+
 boxes.push(...boxTypes);
 boxes.push(...boxTypes);
 let boxEvent = document.querySelectorAll(".box");
@@ -85,15 +89,21 @@ const flip = (idx) => {
         return;
       } else {
         score++;
+        matchedCards.push(true);
         scoreBox.innerHTML = score;
         addAnimation(prev, idx, "match");
       }
     }
     clearAnimation(prev, idx, "select", 500);
     prev = null;
-    if (score == 7) {
+    if (matchedCards.length == 7) {
+      //we won the game
+      //make next level difficult
       setTimeout(() => {
-        reset();
+        level = level > 3 ? level - 1 : 3;
+        health = level;
+        matchedCards = [];
+        init();
       }, 1000);
     }
   }
@@ -131,15 +141,21 @@ const createBoard = () => {
 shuffle();
 createBoard();
 
-const reset = () => {
+const init = () => {
   document.querySelector(".container").innerHTML = "";
-  prev = null;
-  score = 0;
-  health = 10;
   scoreBox.innerHTML = score;
   healthBox.innerHTML = health;
   shuffle();
   createBoard();
+};
+
+const reset = () => {
+  prev = null;
+  score = 0;
+  health = 10;
+  level = 10;
+  matchedCards = [];
+  init();
 };
 
 document.querySelector(".reset").addEventListener("click", reset);

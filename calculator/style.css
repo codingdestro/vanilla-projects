@@ -1,55 +1,82 @@
+:root {
+  --bg-primary: #5691c8;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #a8c0ff, #3f2b96);
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 90vh;
-  user-select: none;
 }
-.container {
-  display: flex;
-  flex-direction: column;
-  border: 2px solid rgb(223, 223, 223);
-  align-items: center;
-  height: 400px;
-  width: 300px;
-  border-radius: 0.5rem;
-  box-shadow: 4px 5px 8px gray, inset 1px 1px 5px gray;
+
+.calculator {
+  width: 320px;
+  background-color: var(--bg-primary);
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  color: white;
 }
-.screen input {
-  margin: 20px 0;
-  width: 250px;
-  font-size: 30px;
+
+.display {
+  background-color: #eeeeee;
+  border: none;
   color: black;
-  border-radius: 0.5rem;
-  border: 2px solid gainsboro;
+  padding: 20px;
+  font-size: 2rem;
   text-align: right;
-  padding: 4px 10px;
-  box-shadow: 2px 2px 5px gray, inset 1px 1px 4px rgb(184, 184, 184);
+  border-radius: 10px;
+  margin-bottom: 20px;
+  min-height: 60px;
+  width: 100%;
+  word-wrap: break-word;
 }
-.pad {
-  margin-top: 10px;
-  width: 90%;
+
+.buttons {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 15px;
-  justify-content: space-evenly;
 }
 
 .btn {
-  padding: 10px 15px;
-  font-weight: 600;
-  font-size: 20px;
-  border-radius: 0.5rem;
-  border: 1px solid rgb(211, 211, 211);
-  box-shadow: 2px 2px 5px gray, inset 1px 1px 4px gray;
-}
-#clear{
-  grid-column-start: 1;
-  grid-column-end: 3;
+  padding: 20px;
+  font-size: 1.2rem;
+  background-color: #4338ca;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
+.btn:hover {
+  background-color: #6366f1;
+}
 
-#equal {
-  grid-column-start: 3;
-  grid-column-end: 5;
+.operator {
+  background-color: #7c3aed;
+}
+
+.operator:hover {
+  background-color: #a78bfa;
+}
+
+.equal {
+  background-color: #10b981;
+  grid-column: span 1;
+}
+
+.equal:hover {
+  background-color: #34d399;
+}
+
+.zero {
+  grid-column: span 2;
 }

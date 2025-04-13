@@ -1,5 +1,5 @@
 const buttons = document.querySelectorAll(".btn");
-const display = document.querySelectorAll(".screen input")[0];
+const display = document.querySelectorAll(".display")[0];
 let a = "";
 let b = "";
 let c = 0;
@@ -63,7 +63,7 @@ const handler = (id, text) => {
       addOpe(text);
       break;
     case "clear":
-      a = "";
+      a = "0";
       ope = "";
       b = "";
       toScreen("");

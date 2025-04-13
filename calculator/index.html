@@ -2,38 +2,39 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <script src="main.js" defer></script>
-    <title>Calculator</title>
+    <title>Calculator UI</title>
+    <link rel="stylesheet" href="/calculator/style.css" />
   </head>
   <body>
-    <div class="container">
-      <div class="screen">
-        <input type="text" value="" placeholder="00" disabled />
-      </div>
-      <div class="pad">
-        <button class="btn">9</button>
-        <button class="btn">8</button>
-        <button class="btn">7</button>
-        <button id="ope" class="btn">-</button>
-        <button class="btn">6</button>
-        <button class="btn">5</button>
-        <button class="btn">4</button>
-        <button id="ope" class="btn">x</button>
-        <button class="btn">3</button>
-        <button class="btn">2</button>
-        <button class="btn">1</button>
-        <button id="ope" class="btn">+</button>
-        <button id="backspace" class="btn">&leftarrow;</button>
-        <button class="btn">0</button>
-        <button id="dot" class="btn">.</button>
-        <button id="ope" class="btn">/</button>
+    <div class="calculator">
+      <input type="text" class="display" value="0" />
+      <div class="buttons">
         <button id="clear" class="btn">C</button>
-        <button id="equal" class="btn">=</button>
+        <button id="backspace" class="btn">←</button>
+        <button id="ope" class="btn">%</button>
+        <button id="ope" class="btn operator">/</button>
+
+        <button class="btn">7</button>
+        <button class="btn">8</button>
+        <button class="btn">9</button>
+        <button id="ope" class="btn operator">x</button>
+
+        <button class="btn">4</button>
+        <button class="btn">5</button>
+        <button class="btn">6</button>
+        <button id="ope" class="btn operator">-</button>
+
+        <button class="btn">1</button>
+        <button class="btn">2</button>
+        <button class="btn">3</button>
+        <button id="ope" class="btn operator">+</button>
+
+        <button class="btn zero">0</button>
+        <button id="dot" class="btn">.</button>
+        <button id="equal" class="btn equal">=</button>
       </div>
     </div>
-    
   </body>
+  <script src="/calculator/main.js"></script>
 </html>

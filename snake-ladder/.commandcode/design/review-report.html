@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Snake And Ladder - Review Report</title>
+	<script src="https://cdn.tailwindcss.com"></script>
+	<style>
+		body { font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
+		.mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+		.report-section { border: 1px solid #222226; background: #0a0a0b; position: relative; }
+		.corner-box { position: absolute; width: 20px; height: 20px; border: 1px solid #222226; background: #000; }
+	</style>
+</head>
+<body class="bg-black text-[#fafafa]">
+	<main class="mx-auto w-full max-w-6xl px-5 py-8 md:px-10 md:py-12">
+		<header class="report-section mb-8 p-6 md:p-8">
+			<div class="corner-box left-0 top-0 -translate-x-1/2 -translate-y-1/2"></div>
+			<div class="corner-box right-0 top-0 translate-x-1/2 -translate-y-1/2"></div>
+			<div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+				<div>
+					<div class="mono mb-2 text-xs tracking-widest text-[#666]">// REVIEW</div>
+					<h1 class="text-4xl font-bold tracking-tight md:text-6xl">Snake And Ladder</h1>
+				</div>
+				<div class="mono text-left text-xs text-[#666] md:text-right">
+					<div>COMMANDCODE REPORT</div>
+					<div class="text-[#444]">2026-07-22</div>
+				</div>
+			</div>
+		</header>
+
+		<section class="report-section mb-8 p-6 md:p-8">
+			<div class="corner-box left-0 top-0 -translate-x-1/2 -translate-y-1/2"></div>
+			<div class="corner-box right-0 top-0 translate-x-1/2 -translate-y-1/2"></div>
+			<div class="grid gap-8 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
+				<div>
+					<div class="mono mb-2 text-xs tracking-widest text-[#666]">// OVERALL</div>
+					<div class="text-6xl font-bold tracking-tight md:text-7xl">16</div>
+					<div class="mt-1 text-lg text-[#666]">/ 50</div>
+					<div class="mt-4 inline-flex border border-[#f43f5e]/30 bg-[#f43f5e]/10 px-3 py-1 text-sm text-[#f43f5e]">NEEDS WORK</div>
+				</div>
+				<div>
+					<div class="mono mb-3 text-xs tracking-widest text-[#666]">// TL;DR</div>
+					<p class="text-sm leading-6 text-[#a0a0a0]">The game logic is functional and the 3D dice animation shows genuine craft, but the design stops at bare functionality. No title, no turn display, no victory screen — just a raw <code class="text-[#fbbf24]">alert()</code>. The board carries all visual weight while the interface around it is an afterthought.</p>
+					<p class="mt-4 text-sm leading-6 text-[#fbbf24]">Build a game panel around the board — title, turn indicator, player scores, and a proper victory overlay. Then recolor and typeset to match the board's playful tone.</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="report-section mb-8 p-6 md:p-8">
+			<div class="mono mb-6 text-xs tracking-widest text-[#666]">// HEURISTIC SCORES</div>
+			<div class="overflow-x-auto">
+				<table class="w-full min-w-[720px] border-collapse text-sm">
+					<thead>
+						<tr class="border-b border-[#222226] text-left mono text-xs text-[#666]">
+							<th class="py-3 pr-4 font-normal">#</th>
+							<th class="py-3 pr-4 font-normal">HEURISTIC</th>
+							<th class="py-3 pr-4 font-normal">SCORE</th>
+							<th class="py-3 font-normal">KEY FINDING</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="border-b border-[#1a1a1e]">
+							<td class="py-4 pr-4 text-[#555]">1</td>
+							<td class="py-4 pr-4 text-[#fafafa]">First impression</td>
+							<td class="py-4 pr-4 text-[#f43f5e]">3 / 10</td>
+							<td class="py-4 text-[#a0a0a0]">No title, no branding — a black square and tiny dice floating in void.</td>
+						</tr>
+						<tr class="border-b border-[#1a1a1e]">
+							<td class="py-4 pr-4 text-[#555]">2</td>
+							<td class="py-4 pr-4 text-[#fafafa]">Hierarchy</td>
+							<td class="py-4 pr-4 text-[#f43f5e]">3 / 10</td>
+							<td class="py-4 text-[#a0a0a0]">Active player indicator is a nearly invisible 10px CSS triangle. No score display.</td>
+						</tr>
+						<tr class="border-b border-[#1a1a1e]">
+							<td class="py-4 pr-4 text-[#555]">3</td>
+							<td class="py-4 pr-4 text-[#fafafa]">Color voice</td>
+							<td class="py-4 pr-4 text-[#fbbf24]">4 / 10</td>
+							<td class="py-4 text-[#a0a0a0]">Coin gradients differentiate players well, but everything else uses browser defaults.</td>
+						</tr>
+						<tr class="border-b border-[#1a1a1e]">
+							<td class="py-4 pr-4 text-[#555]">4</td>
+							<td class="py-4 pr-4 text-[#fafafa]">Type voice</td>
+							<td class="py-4 pr-4 text-[#f43f5e]">2 / 10</td>
+							<td class="py-4 text-[#a0a0a0]">No typography system. No headings, labels, or instructional text anywhere on screen.</td>
+						</tr>
+						<tr class="border-b border-[#1a1a1e]">
+							<td class="py-4 pr-4 text-[#555]">5</td>
+							<td class="py-4 pr-4 text-[#fafafa]">Interaction feel</td>
+							<td class="py-4 pr-4 text-[#fbbf24]">4 / 10</td>
+							<td class="py-4 text-[#a0a0a0]">3D dice is well-crafted, but victory via alert(), no keyboard access, ambiguous click targets.</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</section>
+
+		<section class="report-section mb-8 p-6 md:p-8">
+			<div class="mono mb-6 text-xs tracking-widest text-[#666]">// COGNITIVE LOAD / RISK</div>
+			<div class="grid gap-6 md:grid-cols-2">
+				<div>
+					<div class="mb-3 text-xl font-semibold">Moderate-High</div>
+					<ul class="space-y-3 text-sm text-[#a0a0a0]">
+						<li><span class="mono mr-2 text-[#34d399]">PASS</span>Board image provides clear game geography</li>
+						<li><span class="mono mr-2 text-[#34d399]">PASS</span>3D dice rotation is satisfying and well-timed</li>
+						<li><span class="mono mr-2 text-[#34d399]">PASS</span>Coin color differentiation is clear at a glance</li>
+						<li><span class="mono mr-2 text-[#34d399]">PASS</span>Step-by-step coin movement creates anticipation</li>
+						<li><span class="mono mr-2 text-[#fbbf24]">WATCH</span>Board click as dice trigger is unintuitive</li>
+						<li><span class="mono mr-2 text-[#fbbf24]">WATCH</span>No turn indicator beyond tiny coin triangle</li>
+						<li><span class="mono mr-2 text-[#fbbf24]">WATCH</span>Snake/ladder teleport has zero visual cue</li>
+						<li><span class="mono mr-2 text-[#ef4444]">FAIL</span>Raw alert() for game-over destroys immersion</li>
+						<li><span class="mono mr-2 text-[#ef4444]">FAIL</span>No keyboard — game is mouse/touch only</li>
+						<li><span class="mono mr-2 text-[#ef4444]">FAIL</span>Zero game context: no names, no scores, no rounds</li>
+					</ul>
+				</div>
+				<div>
+					<div class="mono mb-3 text-xs tracking-widest text-[#666]">// NEXT MODES</div>
+					<div class="flex flex-wrap gap-2">
+						<span class="border border-[#333] px-3 py-1 text-sm text-[#a0a0a0]">/design relayout</span>
+						<span class="border border-[#333] px-3 py-1 text-sm text-[#a0a0a0]">/design recolor</span>
+						<span class="border border-[#333] px-3 py-1 text-sm text-[#a0a0a0]">/design typeset</span>
+						<span class="border border-[#333] px-3 py-1 text-sm text-[#a0a0a0]">/design interaction</span>
+						<span class="border border-[#333] px-3 py-1 text-sm text-[#a0a0a0]">/design surface</span>
+						<span class="border border-[#333] px-3 py-1 text-sm text-[#a0a0a0]">/design motion</span>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="report-section mb-8 p-6 md:p-8">
+			<div class="mono mb-6 text-xs tracking-widest text-[#666]">// WHAT'S WORKING</div>
+			<div class="grid gap-4 md:grid-cols-3">
+				<article class="border border-[#1f1f24] p-4">
+					<h2 class="mb-2 text-sm font-semibold">3D Dice Animation</h2>
+					<p class="text-sm leading-6 text-[#a0a0a0]">CSS 3D cube with preserve-3d and keyframed rotation. The 1-second roll with face snapping feels genuinely satisfying. Strongest element in the design.</p>
+				</article>
+				<article class="border border-[#1f1f24] p-4">
+					<h2 class="mb-2 text-sm font-semibold">Step-by-step Movement</h2>
+					<p class="text-sm leading-6 text-[#a0a0a0]">Coins move one cell at a time (450ms intervals), creating anticipation and making board traversal legible. Better than instant teleport.</p>
+				</article>
+				<article class="border border-[#1f1f24] p-4">
+					<h2 class="mb-2 text-sm font-semibold">Random Board Themes</h2>
+					<p class="text-sm leading-6 text-[#a0a0a0]">Two board images with separate snake/ladder data sets. Swapping on load adds variety and shows thoughtful implementation.</p>
+				</article>
+			</div>
+		</section>
+
+		<section class="report-section mb-8 p-6 md:p-8">
+			<div class="mono mb-6 text-xs tracking-widest text-[#666]">// PRIORITY ISSUES</div>
+			<div class="space-y-5">
+				<article class="border border-[#2a1d22] bg-[#110b0d] p-5">
+					<div class="mono mb-2 text-xs text-[#f43f5e]">P0</div>
+					<h2 class="mb-2 text-lg font-semibold">No Game Identity</h2>
+					<p class="mb-4 text-sm leading-6 text-[#a0a0a0]">The page has no title, no header, no branding. A player sees a black square and a tiny white box. Nothing on the visible surface says "Snake and Ladder" or communicates what this is.</p>
+					<div class="border-l border-[#fbbf24] pl-4 text-sm leading-6 text-[#fbbf24]">FIX: Add a game panel with a visible title, player turn indicator, and game status. /design relayout</div>
+				</article>
+				<article class="border border-[#2a1d22] bg-[#110b0d] p-5">
+					<div class="mono mb-2 text-xs text-[#f43f5e]">P0</div>
+					<h2 class="mb-2 text-lg font-semibold">Alert() as Victory Screen</h2>
+					<p class="mb-4 text-sm leading-6 text-[#a0a0a0]">Winning triggers <code class="text-[#fbbf24]">alert(name + " you won!")</code> — a raw browser dialog that halts all animation, blocks interaction, and looks like a 1995 error message. Two separate alert calls exist for the same condition (lines 112 and 143 in main.js).</p>
+					<div class="border-l border-[#fbbf24] pl-4 text-sm leading-6 text-[#fbbf24]">FIX: Replace with an in-game victory overlay with winner name, celebration, and "Play Again". /design interaction + /design surface</div>
+				</article>
+				<article class="border border-[#2a1d22] bg-[#110b0d] p-5">
+					<div class="mono mb-2 text-xs text-[#f43f5e]">P0</div>
+					<h2 class="mb-2 text-lg font-semibold">Invisible Turn State</h2>
+					<p class="mb-4 text-sm leading-6 text-[#a0a0a0]">The only turn indicator is a 10px CSS triangle (<code class="text-[#fbbf24]">.coin .active</code> border trick) on the active coin. Nearly invisible on the board. No text display, player panel, or move history.</p>
+					<div class="border-l border-[#fbbf24] pl-4 text-sm leading-6 text-[#fbbf24]">FIX: Add a player status panel showing active player name, color indicator, and last roll result. /design relayout + /design interaction</div>
+				</article>
+				<article class="border border-[#2a1d22] bg-[#110b0d] p-5">
+					<div class="mono mb-2 text-xs text-[#fbbf24]">P1</div>
+					<h2 class="mb-2 text-lg font-semibold">Wrong Interaction Affordance</h2>
+					<p class="mb-4 text-sm leading-6 text-[#a0a0a0]">Clicking the board canvas rolls the dice alongside the dice box. This is counterintuitive — the dice is the natural target, not the playing field. Both event listeners trigger the same function.</p>
+					<div class="border-l border-[#fbbf24] pl-4 text-sm leading-6 text-[#fbbf24]">FIX: Remove board click handler. Make the dice box the single prominent roll target with clear hover/active states. /design interaction</div>
+				</article>
+				<article class="border border-[#2a1d22] bg-[#110b0d] p-5">
+					<div class="mono mb-2 text-xs text-[#fbbf24]">P1</div>
+					<h2 class="mb-2 text-lg font-semibold">No Snake/Ladder Visual Feedback</h2>
+					<p class="mb-4 text-sm leading-6 text-[#a0a0a0]">Landing on a snake or ladder teleports the coin after 100ms with no slide animation, arrow indicator, audio cue, or explanation. The player sees their coin jump without understanding why.</p>
+					<div class="border-l border-[#fbbf24] pl-4 text-sm leading-6 text-[#fbbf24]">FIX: Add directional slide animation, "Snake! Down to 12" / "Ladder! Up to 34" labels, and red/green color coding. /design motion + /design interaction</div>
+				</article>
+				<article class="border border-[#2a1d22] bg-[#110b0d] p-5">
+					<div class="mono mb-2 text-xs text-[#34d399]">P2</div>
+					<h2 class="mb-2 text-lg font-semibold">Void Background</h2>
+					<p class="mb-4 text-sm leading-6 text-[#a0a0a0]">The body has no background color. The game floats on stark white/transparent canvas. A game should feel like it occupies a space — a tabletop, a room, a themed environment.</p>
+					<div class="border-l border-[#fbbf24] pl-4 text-sm leading-6 text-[#fbbf24]">FIX: Add a warm, game-appropriate background (wood texture, felt green, or subtle gradient). /design recolor</div>
+				</article>
+				<article class="border border-[#2a1d22] bg-[#110b0d] p-5">
+					<div class="mono mb-2 text-xs text-[#34d399]">P2</div>
+					<h2 class="mb-2 text-lg font-semibold">Unbranded Player Selection</h2>
+					<p class="mb-4 text-sm leading-6 text-[#a0a0a0]">The player count picker is a blur backdrop with two bare buttons ("2 player", "3 player"). No game logo, title, or instructional text.</p>
+					<div class="border-l border-[#fbbf24] pl-4 text-sm leading-6 text-[#fbbf24]">FIX: Add game title/logo, "Select Players" heading, and styled buttons with player color previews. /design relayout</div>
+				</article>
+				<article class="border border-[#2a1d22] bg-[#110b0d] p-5">
+					<div class="mono mb-2 text-xs text-[#34d399]">P2</div>
+					<h2 class="mb-2 text-lg font-semibold">No Keyboard Accessibility</h2>
+					<p class="mb-4 text-sm leading-6 text-[#a0a0a0]">Entire game is mouse/touch only. Zero keyboard handlers, zero tabindex, zero ARIA attributes across all three files.</p>
+					<div class="border-l border-[#fbbf24] pl-4 text-sm leading-6 text-[#fbbf24]">FIX: Add Space/Enter for dice roll, Tab navigation for player selection, and ARIA live regions for game state announcements. /design interaction</div>
+				</article>
+			</div>
+		</section>
+
+		<footer class="mono py-8 text-center text-xs tracking-widest text-[#444]">
+			Generated with CommandCode - 2026-07-22
+		</footer>
+	</main>
+</body>
+</html>

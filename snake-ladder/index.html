@@ -7,35 +7,56 @@
     <title>Snake And Ladder</title>
   </head>
   <body>
-    <div id="canva"></div>
-    <div class="dice-box">
-      <div class="dice">
-        <div class="sides">
-          <div class="side" style="--i: 0">
-            <div class="dots">1</div>
+    <div class="game-table">
+      <header class="game-header">
+        <h1 class="game-title">Snake <span class="title-sep">&</span> Ladder</h1>
+      </header>
+
+      <main class="game-main">
+        <aside class="player-panel" id="playerPanel">
+          <h2 class="panel-label">Players</h2>
+          <ul class="player-list" id="playerList"></ul>
+        </aside>
+
+        <div class="board-area">
+          <div id="canva"></div>
+          <div class="snake-feedback" id="snakeFeedback" aria-live="polite"></div>
+        </div>
+      </main>
+
+      <footer class="dice-station">
+        <button class="dice-box" id="diceBox" aria-label="Roll dice">
+          <div class="dice">
+            <div class="sides">
+              <div class="side" style="--i: 0"><div class="dots">1</div></div>
+              <div class="side" style="--i: 1"><div class="dots">2</div></div>
+              <div class="side" style="--i: 2"><div class="dots">3</div></div>
+              <div class="side" style="--i: 3"><div class="dots">4</div></div>
+              <div class="side top"><div class="dots">5</div></div>
+              <div class="side top bottom"><div class="dots">6</div></div>
+            </div>
           </div>
-          <div class="side" style="--i: 1">
-            <div class="dots">2</div>
-          </div>
-          <div class="side" style="--i: 2">
-            <div class="dots">3</div>
-          </div>
-          <div class="side" style="--i: 3">
-            <div class="dots">4</div>
-          </div>
-          <div class="side top">
-            <div class="dots">5</div>
-          </div>
-          <div class="side top bottom">
-            <div class="dots">6</div>
-          </div>
+        </button>
+        <p class="roll-hint">Click dice or press <kbd>Space</kbd> to roll</p>
+      </footer>
+    </div>
+
+    <div class="player-select-overlay" id="playerSelect">
+      <div class="player-select-card">
+        <h2 class="pick-heading">Select Players</h2>
+        <div class="pick-buttons">
+          <button class="pick-btn" data-players="2">2 Players</button>
+          <button class="pick-btn" data-players="3">3 Players</button>
         </div>
       </div>
     </div>
-    <div class="player-selection">
-      <div>
-        <button>2 player</button>
-        <button>3 player</button>
+
+    <div class="victory-overlay" id="victoryOverlay" role="dialog" aria-modal="true" aria-label="Game over" hidden>
+      <div class="victory-card">
+        <div class="victory-trophy">&#127942;</div>
+        <h2 class="victory-heading" id="victoryHeading"></h2>
+        <p class="victory-sub" id="victorySub"></p>
+        <button class="victory-btn" id="playAgain">Play Again</button>
       </div>
     </div>
   </body>

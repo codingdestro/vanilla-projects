@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ffffff" />
+    <title>Habit Tracker</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="app">
+      <header class="header">
+        <div class="header-left">
+          <span class="logo" aria-hidden="true">+</span>
+          <h1>Habit Tracker</h1>
+          <span class="storage-badge" id="storage-badge">local</span>
+        </div>
+        <button class="btn btn-dark" id="btn-add" type="button">+ New habit</button>
+      </header>
+
+      <div class="stats-bar" aria-label="Statistics">
+        <div class="stat" title="Current streak">
+          <span class="stat-num" id="stat-streak">0</span>
+          <span class="stat-label">day streak</span>
+        </div>
+        <div class="stat" title="Today's progress">
+          <span class="stat-num" id="stat-today">0/<span id="stat-today-total">0</span></span>
+          <span class="stat-label">done today</span>
+        </div>
+        <div class="stat" title="This week">
+          <span class="stat-num" id="stat-week">0%</span>
+          <span class="stat-label">this week</span>
+        </div>
+        <div class="stat" title="Total check-ins">
+          <span class="stat-num" id="stat-total">0</span>
+          <span class="stat-label">total</span>
+        </div>
+      </div>
+
+      <div class="main-grid">
+        <section class="panel habits-panel" aria-labelledby="habits-heading">
+          <div class="panel-head">
+            <div>
+              <p class="panel-date" id="panel-date"></p>
+              <h2 id="habits-heading">Habits</h2>
+            </div>
+          </div>
+          <div class="habit-list" id="habit-list" aria-live="polite">
+            <div class="loading-msg">Loading…</div>
+          </div>
+          <div class="empty-msg" id="empty-msg" hidden>
+            <p>No habits yet.</p>
+            <button class="btn btn-outline" type="button" data-add-btn>Add one</button>
+          </div>
+        </section>
+
+        <section class="panel stats-panel" aria-labelledby="stats-heading">
+          <h2 id="stats-heading" class="stats-title">Activity</h2>
+
+          <div class="heatmap-wrap" aria-label="Contribution heatmap">
+            <div class="heatmap-grid" id="heatmap"></div>
+            <div class="heatmap-legend">
+              <span>Less</span>
+              <span class="hm-cell hm-cell--0"></span>
+              <span class="hm-cell hm-cell--1"></span>
+              <span class="hm-cell hm-cell--2"></span>
+              <span class="hm-cell hm-cell--3"></span>
+              <span class="hm-cell hm-cell--4"></span>
+              <span>More</span>
+            </div>
+          </div>
+
+          <div class="calendar-wrap">
+            <div class="calendar-nav">
+              <button class="nav-btn" id="btn-prev-month" type="button" aria-label="Previous month">←</button>
+              <span class="month-name" id="month-name" aria-live="polite"></span>
+              <button class="nav-btn" id="btn-next-month" type="button" aria-label="Next month">→</button>
+            </div>
+            <div class="cal-grid" id="cal-grid" role="grid" aria-label="Month calendar"></div>
+            <div class="cal-legend">
+              <span class="cal-legend-cell cal-done"></span> all done
+              <span class="cal-legend-cell cal-some"></span> some done
+              <span class="cal-legend-cell cal-none"></span> none
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <footer class="footer">Data stored privately in your browser via IndexedDB.</footer>
+    </div>
+
+    <dialog class="dialog" id="dialog-habit" aria-labelledby="dialog-title">
+      <form id="form-habit" method="dialog">
+        <div class="dialog-head">
+          <h2 id="dialog-title">New habit</h2>
+          <button class="btn-close" id="btn-close-dialog" type="button" aria-label="Close">×</button>
+        </div>
+        <label class="field" for="input-name">Name</label>
+        <input class="input" id="input-name" name="name" type="text" maxlength="42" placeholder="e.g. Read for 20 minutes" required autocomplete="off" />
+        <label class="field" for="input-detail">
+          Note <span>(optional)</span>
+        </label>
+        <input class="input" id="input-detail" name="detail" type="text" maxlength="72" placeholder="e.g. Before bed" autocomplete="off" />
+        <p class="form-err" id="form-err" role="alert"></p>
+        <div class="dialog-btns">
+          <button class="btn btn-outline" id="btn-cancel-dialog" type="button">Cancel</button>
+          <button class="btn btn-dark" type="submit">Save</button>
+        </div>
+      </form>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>

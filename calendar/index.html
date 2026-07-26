@@ -4,36 +4,36 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
     <script src="main.js" defer></script>
     <title>Calendar</title>
   </head>
   <body>
-    <div class="container">
-      <div class="body">
-        <div class="year-box">
-          <div class="btn">
-            <div class="button"><</div>
-          </div>
-          <div class="year"></div>
-          <div class="btn">
-            <div class="button">></div>
-          </div>
-        </div>
+    <div class="calendar">
+      <header class="calendar-header">
+        <button class="nav-btn" id="prev" aria-label="Previous month">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
+        </button>
+        <h1 class="month-year" id="monthYear"></h1>
+        <button class="nav-btn" id="next" aria-label="Next month">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6" /></svg>
+        </button>
+      </header>
 
-        <div class="date-container">
-          <div class="week">
-            <div>sun</div>
-            <div>mon</div>
-            <div>tue</div>
-            <div>wed</div>
-            <div>thu</div>
-            <div>fri</div>
-            <div>sat</div>
-          </div>
-          <div class="date"></div>
-        </div>
+      <div class="calendar-grid">
+        <div class="weekday">Sun</div>
+        <div class="weekday">Mon</div>
+        <div class="weekday">Tue</div>
+        <div class="weekday">Wed</div>
+        <div class="weekday">Thu</div>
+        <div class="weekday">Fri</div>
+        <div class="weekday">Sat</div>
       </div>
+
+      <div class="days-grid" id="daysGrid"></div>
     </div>
   </body>
 </html>

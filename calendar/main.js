@@ -1,99 +1,87 @@
-const Months = [
-  "january",
-  "february",
-  "march",
-  "april",
-  "may",
-  "june",
-  "july",
-  "august",
-  "september",
-  "october",
-  "november",
-  "december",
+const MONTHS = [
+  "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December",
 ];
 
-let date = new Date();
-let crrYear = date.getFullYear();
-let crrMonth = date.getMonth();
+let currentDate = new Date();
+let currentYear = currentDate.getFullYear();
+let currentMonth = currentDate.getMonth();
 
-const goToNextMonth = () => {
-  if (crrMonth > 11) {
-    date = new Date(crrYear + 1, 0);
-  } else {
-    date = new Date(crrYear, crrMonth + 1);
-  }
-  crrYear = date.getFullYear();
-  crrMonth = date.getMonth();
-  setDate();
-};
+const monthYearEl = document.getElementById("monthYear");
+const daysGridEl = document.getElementById("daysGrid");
+const prevBtn = document.getElementById("prev");
+const nextBtn = document.getElementById("next");
 
-const goToPrevMonth = () => {
-  if (crrMonth < 0) {
-    date = new Date(crrYear - 1, 0);
-  } else {
-    date = new Date(crrYear, crrMonth - 1);
-  }
-  crrYear = date.getFullYear();
-  crrMonth = date.getMonth();
-  setDate();
-};
+function createDay(text, ...classes) {
+  const el = document.createElement("div");
+  el.classList.add("day", ...classes);
+  el.textContent = text;
+  return el;
+}
 
-const setElement = (date, className = "", func) => {
-  let ele = document.createElement("div");
-  ele.innerText = date;
-  ele.addEventListener("click", func)
-  className && ele.classList.add(className);
-  return ele;
-};
+function render() {
+  monthYearEl.textContent = `${MONTHS[currentMonth]} ${currentYear}`;
+  daysGridEl.innerHTML = "";
 
-//element
-let buttons = document.querySelectorAll(".button");
+  const today = new Date();
+  const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+  const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+  const daysInPrevMonth = new Date(currentYear, currentMonth, 0).getDate();
 
-const setDate = () => {
-  let day = document.querySelector(".date");
-  let year = document.querySelector(".year");
-  year.innerHTML = `${Months[crrMonth]} ${crrYear}`;
-  let firstDayOfMonth = new Date(crrYear, crrMonth + 1, 0);
-  let prevMonth = new Date(crrYear, crrMonth, false);
-  day.innerHTML = "";
-
-  for (
-    i = prevMonth.getDate() - prevMonth.getDay();
-    i <= prevMonth.getDate();
-    i++
-  ) {
-    day.append(setElement(i, "prev",goToPrevMonth));
+  // Previous month trailing days
+  for (let i = firstDay - 1; i >= 0; i--) {
+    const day = createDay(daysInPrevMonth - i, "day--other");
+    day.addEventListener("click", goToPrevMonth);
+    daysGridEl.appendChild(day);
   }
 
-  let x = 0;
+  // Current month days
+  for (let d = 1; d <= daysInMonth; d++) {
+    const dayOfWeek = new Date(currentYear, currentMonth, d).getDay();
+    const classes = [];
 
-  for (i = 1; i <= firstDayOfMonth.getDate(); i++) {
-    let d = new Date();
-    let ele = null;
     if (
-      d.getDate() == i &&
-      d.getFullYear() == date.getFullYear() &&
-      d.getMonth() == date.getMonth()
+      d === today.getDate() &&
+      currentMonth === today.getMonth() &&
+      currentYear === today.getFullYear()
     ) {
-      ele = setElement(i, "current");
-    } else {
-      ele = setElement(i);
+      classes.push("day--today");
     }
-    day.append(ele);
+    if (dayOfWeek === 0) classes.push("day--sunday");
+    if (dayOfWeek === 6) classes.push("day--saturday");
+
+    daysGridEl.appendChild(createDay(d, ...classes));
   }
 
-  for (i = 1; i <= 6 - firstDayOfMonth.getDay(); i++) {
-    day.append(setElement(i, "prev",goToNextMonth));
+  // Next month leading days
+  const totalCells = daysGridEl.children.length;
+  const remaining = totalCells % 7 === 0 ? 0 : 7 - (totalCells % 7);
+  for (let i = 1; i <= remaining; i++) {
+    const day = createDay(i, "day--other");
+    day.addEventListener("click", goToNextMonth);
+    daysGridEl.appendChild(day);
   }
+}
 
-  for (let i = 1; i <= 5; i++) {
-    day.children[x].setAttribute("style", "background:rgba(255, 0, 0, 0.767);");
-    x = i * 7;
+function goToNextMonth() {
+  currentMonth++;
+  if (currentMonth > 11) {
+    currentMonth = 0;
+    currentYear++;
   }
-};
-setDate();
+  render();
+}
 
-//buttons for changing months
-buttons[0].addEventListener("click", goToPrevMonth);
-buttons[1].addEventListener("click", goToNextMonth);
+function goToPrevMonth() {
+  currentMonth--;
+  if (currentMonth < 0) {
+    currentMonth = 11;
+    currentYear--;
+  }
+  render();
+}
+
+prevBtn.addEventListener("click", goToPrevMonth);
+nextBtn.addEventListener("click", goToNextMonth);
+
+render();

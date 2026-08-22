@@ -8,7 +8,8 @@ A collection of small games and tools built with plain HTML, CSS, and JavaScript
 2. [Tic-Tac-Toe](./tic-tac-toe/) — Classic two-player X and O duel
 3. [Connect Four](./connect-four/) — Drop discs and line up four in a row
 4. [Memory Game](./memory-game/) — Flip the cards and match every pair
-5. [Racing Car](https://codingdestro.github.io/racingcar/) — A retro-style racing game (External)
+5. [Space Shooter](./space-shooter//) — Flip the cards and match every pair
+6. [Racing Car](https://codingdestro.github.io/racingcar/) — A retro-style racing game (External)
 
 ## Tools
 

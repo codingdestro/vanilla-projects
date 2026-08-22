@@ -1,0 +1,25 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+canvas {
+  display: block;
+  width: min(92vw, 390px);
+  height: auto;
+  border: 1px solid black;
+  border-radius: 0.8rem;
+  background: #fff;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.35);
+  touch-action: none;
+}
+
+body {
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
